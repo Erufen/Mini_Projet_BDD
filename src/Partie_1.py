@@ -99,8 +99,8 @@ with open('departement2020.csv','r') as fin:
     dr = csv.DictReader(fin) # la virgule est le délimiteur par défaut
     to_db_1 = [(i['DEPARTEMENTS'], i['REGIONS'], i['cheflieu'], i['tncc'], i['ncc'], i['nccenr'], i['libelle']) for i in dr]
 
-
 cursor.executemany("INSERT INTO DEPARTEMENT (DEPARTEMENTS, REGIONS, cheflieu, tncc, ncc, nccenr, libelle) VALUES (?,?,?,?,?,?,?); ", to_db_1)
+
 
 with open('region2020.csv','r') as fin: 
     dr = csv.DictReader(fin)
