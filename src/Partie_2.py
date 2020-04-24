@@ -74,7 +74,7 @@ def connexionBD():
     print("        |                                                          |")
     print("        |         Connexion à la base de données réussite !        |")
     print("        |                                                          |")
-    print("        |              Que voulez-vous faire ?                     |")
+    print("        |                 Que voulez-vous faire ?                  |")
     print("        \\----------------------------------------------------------/")
 
 def questionOne():
@@ -166,10 +166,10 @@ def questionTen():
     print("Réponse à la question 10 : ", resultat)
     
 def questionEleven(): 
-    requete = "SELECT Poids_de_l_économie_sociale_dans_les_emplois_salariés_du_territoire_2015 FROM SOCIALREG S join REGION R on S.REGIONS = R.nccenr join DEPARTEMENT D on R.REGIONS = D.REGIONS join ENVIRONNEMENTDEP E on D.nccenr = E.DEPARTEMENTS WHERE Photovoltaïque_2015 >= 10 AND Part_de_l_agriculture_biologique_dans_la_surface_agricole_totale_2016 >= 5;"
+    requete = "SELECT AVG(S.Poids_de_l_économie_sociale_dans_les_emplois_salariés_du_territoire_2015) FROM SOCIALREG S join REGION R on S.REGIONS = R.nccenr JOIN DEPARTEMENT D on R.REGIONS = D.REGIONS JOIN ENVIRONNEMENTDEP E on D.nccenr = E.DEPARTEMENTS GROUP BY R.nccenr HAVING AVG(Photovoltaïque_2015) >= 10 AND AVG(Part_de_l_agriculture_biologique_dans_la_surface_agricole_totale_2016) >= 5;"
     cursor.execute(requete)
     resultat = cursor.fetchall()
-    print("Réponse à la question 11 : ", resultat)
+    print("Réponse à la question 11 (avec les années 2015 et 2016) : ", resultat)
     
 def deconnexionBD():
     connexion.close()
